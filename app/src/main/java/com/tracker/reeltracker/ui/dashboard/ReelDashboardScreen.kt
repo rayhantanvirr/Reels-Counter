@@ -136,7 +136,7 @@ fun HeroMetricsCard(
     val totalMinutes = totalDwellMs / 1000 / 60
     val hours = totalMinutes / 60
     val minutes = totalMinutes % 60
-    val formattedTime = if (hours > 0) "\${hours}h \${minutes}m" else "\${minutes}m"
+    val formattedTime = if (hours > 0) "${hours}h ${minutes}m" else "${minutes}m"
     val avgSecondsPerReel = if (totalViews > 0) (totalDwellMs / totalViews / 1000) else 0
 
     Card(
@@ -145,8 +145,9 @@ fun HeroMetricsCard(
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
+            val titleText = if (days == 1) "OVERVIEW (TODAY)" else "OVERVIEW (PAST $days DAYS)"
             Text(
-                text = "OVERVIEW (\${if (days == 1) "TODAY" else "PAST $days DAYS"})",
+                text = titleText,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
@@ -182,7 +183,7 @@ fun HeroMetricsCard(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text("Avg. Dwell per Reel", fontSize = 13.sp)
-                Text("\${avgSecondsPerReel}s / video", fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                Text("${avgSecondsPerReel}s / video", fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
             }
         }
     }
@@ -261,11 +262,12 @@ fun PlatformStatCard(
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(name, fontWeight = FontWeight.SemiBold)
                 }
-                Text("\${stat.totalViews} views (\${(percent * 100).toInt()}%)", fontWeight = FontWeight.Bold)
+                val percentInt = (percent * 100).toInt()
+                Text("${stat.totalViews} views ($percentInt%)", fontWeight = FontWeight.Bold)
             }
             Spacer(modifier = Modifier.height(8.dp))
             LinearProgressIndicator(
-                progress = { percent },
+                progress = percent.coerceIn(0f, 1f),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(8.dp)

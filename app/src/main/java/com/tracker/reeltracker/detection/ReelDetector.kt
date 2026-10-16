@@ -68,7 +68,8 @@ class ReelDetector {
         }
 
         val isReel = hasReelContentDesc || (hasVerticalActionColumn && isVerticalPagerPresent(rootNode))
-        val signature = "IG_\${creator.orEmpty()}_\${audio.orEmpty()}_\${System.currentTimeMillis() / 1000}"
+        val timeSec = System.currentTimeMillis() / 1000
+        val signature = "IG_${creator.orEmpty()}_${audio.orEmpty()}_$timeSec"
 
         return DetectionResult(isReel = isReel, uniqueVideoSignature = signature, creatorTag = creator, audioTitle = audio)
     }
@@ -97,7 +98,7 @@ class ReelDetector {
         }
 
         val isTikTokVideo = (hasLikeButton && hasCommentButton) || (hasLikeButton && hasShareButton)
-        val signature = "TT_\${creator.orEmpty()}_\${sound.orEmpty()}"
+        val signature = "TT_${creator.orEmpty()}_${sound.orEmpty()}"
 
         return DetectionResult(isReel = isTikTokVideo, uniqueVideoSignature = signature, creatorTag = creator, audioTitle = sound)
     }
@@ -122,7 +123,8 @@ class ReelDetector {
         }
 
         val isShorts = isShortsContainer || hasShortsLike
-        val signature = "YT_\${creator.orEmpty()}_\${System.currentTimeMillis() / 2000}"
+        val timeBucket = System.currentTimeMillis() / 2000
+        val signature = "YT_${creator.orEmpty()}_$timeBucket"
 
         return DetectionResult(isReel = isShorts, uniqueVideoSignature = signature, creatorTag = creator)
     }
@@ -144,7 +146,8 @@ class ReelDetector {
         }
 
         val isReel = hasReelsHeader || hasLikeCommentShare
-        val signature = "FB_\${System.currentTimeMillis() / 2000}"
+        val timeBucket = System.currentTimeMillis() / 2000
+        val signature = "FB_$timeBucket"
 
         return DetectionResult(isReel = isReel, uniqueVideoSignature = signature)
     }

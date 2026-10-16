@@ -35,7 +35,7 @@ object RestrictedSettingsHelper {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(context)) {
             val intent = Intent(
                 Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                Uri.parse("package:\${context.packageName}")
+                Uri.parse("package:${context.packageName}")
             ).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
             }
@@ -56,7 +56,7 @@ object RestrictedSettingsHelper {
             val pm = context.getSystemService(Context.POWER_SERVICE) as PowerManager
             if (!pm.isIgnoringBatteryOptimizations(context.packageName)) {
                 val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
-                    data = Uri.parse("package:\${context.packageName}")
+                    data = Uri.parse("package:${context.packageName}")
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 }
                 context.startActivity(intent)
