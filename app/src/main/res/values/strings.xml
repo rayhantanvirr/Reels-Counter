@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Reel &amp; Shorts Usage Tracker</string>
+    <string name="accessibility_service_description">Reel &amp; Shorts Usage Tracker uses AccessibilityService solely to detect when you are actively inside short-form video players (Instagram Reels, TikTok, YouTube Shorts, Facebook Reels) to maintain a unified viewing counter and help monitor doomscrolling habits. No personal data or keystrokes are collected.</string>
+</resources>
