@@ -1,0 +1,6 @@
+{
+  "name": "Reel & Shorts Usage Tracker - Android Architecture & Live Simulator",
+  "description": "Production-grade Android architecture for tracking Instagram Reels, TikTok, YouTube Shorts, and Facebook Reels using AccessibilityService, SYSTEM_ALERT_WINDOW floating overlay, Room DB analytics, and Jetpack Compose.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
